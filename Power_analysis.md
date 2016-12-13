@@ -1,0 +1,89 @@
+Power analysis
+========================================================
+author: Etienne Low-Décarie
+date: December 13, 2016
+autosize: true
+
+Power analysis usage
+========================================================
+
+- Plan your study
+- Post mortem: is it subrising not to detect an effect
+   - Phylosophical nuance: cannot subport that there is no effect
+
+
+Types of error in hypothesis testing
+========================================================
+
+Conclusion\Reality  | H<sub>0</sub> is not rejected |H<sub>0</sub> is  rejected 
+------------- | -------------| -------------
+H<sub>0</sub> is not rejected    | OK| Type II error
+H<sub>0</sub> is  rejected        | Type I error | OK
+
+
+
+Factors that affect power
+========================================================
+
+- Sample Size
+- Variance
+- Significance level (α)
+- Effect size
+
+
+Calculate sample size requirements in R
+========================================================
+
+Example with anova
+
+pwr.anova.test(k = Number of groups,  
+n = Number of observations (per group),  
+f = Effect size,  
+sig.level = Significance level (Type I error probability),  
+power = Power of test (1 minus Type II error probability))
+
+Calculate sample size requirements in R
+========================================================
+
+
+```r
+require(pwr)
+
+pwr.anova.test(k = 3,
+               f = 1,
+               sig.level = 0.05,
+               power = 0.95)
+```
+
+```
+
+     Balanced one-way analysis of variance power calculation 
+
+              k = 3
+              n = 6.282801
+              f = 1
+      sig.level = 0.05
+          power = 0.95
+
+NOTE: n is number in each group
+```
+
+
+Calculate sample size requirements in R
+========================================================
+
+
+
+function |	power calculations for
+------------- | -------------
+pwr.2p.test |	two proportions (equal n)
+pwr.2p2n.test	 |	two proportions (unequal n)
+pwr.anova.test |		balanced one way ANOVA
+pwr.chisq.test |		chi-square test
+pwr.f2.test |		general linear model
+pwr.p.test |		proportion (one sample)
+pwr.r.test |		correlation
+pwr.t.test	 |	t-tests (one sample, 2 sample, paired)
+pwr.t2n.test |		t-test (two samples with unequal n)
+
+source: http://www.statmethods.net/stats/power.html
